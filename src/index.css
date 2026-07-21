@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Montserrat', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+.font-caveat {
+  font-family: 'Caveat', cursive;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+@keyframes marqueeLeft {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 28s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 28s linear infinite;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+/* Custom light soft orange glow and gradient effects for Assessoria Gourmetize */
+.orange-gradient-bg {
+  background: radial-gradient(circle at 50% 30%, #FFC885 0%, #FFAA48 50%, #F2942C 100%);
+}
+
+.orange-glow {
+  box-shadow: 0 0 50px rgba(255, 170, 72, 0.35);
+}
+
+.green-neon-glow {
+  box-shadow: 0 0 25px rgba(0, 230, 118, 0.4);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffaa48;
+}
