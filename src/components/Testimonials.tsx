@@ -3,6 +3,7 @@ import { Play, User, Building2, Quote, X, TrendingUp, Sparkles, Volume2, Maximiz
 import { TestimonialVideo } from '../types';
 import { GOURMETIZE_LOGO } from './Navbar';
 import { ScrollReveal } from './ScrollReveal';
+import { LogoImg } from './LogoImg';
 
 export const Testimonials: React.FC = () => {
   const [playingId, setPlayingId] = useState<string | null>(null);
@@ -123,7 +124,7 @@ export const Testimonials: React.FC = () => {
                   {/* Top Video Overlay Header (Shorts UI Style) */}
                   <div className="relative z-20 p-4 flex items-center justify-between pointer-events-none">
                     <div className="flex items-center gap-2 bg-black/70 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-full text-xs font-bold text-white shadow-lg">
-                      <img src={GOURMETIZE_LOGO} alt="" className="h-4 w-auto object-contain mix-blend-screen" />
+                      <LogoImg className="h-4 w-auto object-contain" />
                       <span>{item.title}</span>
                     </div>
                     <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md p-1.5 rounded-full text-white/80">

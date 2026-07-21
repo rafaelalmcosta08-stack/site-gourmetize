@@ -1,5 +1,5 @@
 import React from 'react';
-import { GOURMETIZE_LOGO } from './Navbar';
+import { LogoImg } from './LogoImg';
 import { Instagram, Linkedin, MessageCircle, ArrowUp } from 'lucide-react';
 
 export const Footer: React.FC = () => {
@@ -14,10 +14,9 @@ export const Footer: React.FC = () => {
           
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <img
-              src={GOURMETIZE_LOGO}
+            <LogoImg
               alt="Assessoria Gourmetize"
-              className="h-10 sm:h-12 w-auto object-contain mix-blend-multiply bg-white rounded-md p-1"
+              className="h-10 sm:h-12 w-auto object-contain"
             />
           </div>
 

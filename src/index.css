@@ -28,12 +28,16 @@
   display: flex;
   width: max-content;
   animation: marqueeLeft 28s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .animate-marquee-right {
   display: flex;
   width: max-content;
   animation: marqueeRight 28s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .animate-marquee-left:hover,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Star, ShieldCheck, TrendingUp, Clock } from 'lucide-react';
+import { LogoImg } from './LogoImg';
 
 export const GOURMETIZE_LOGO = "https://res.cloudinary.com/epo1w9hl/image/upload/v1784657082/3.0_Gourmetize_udgsmm.png";
 
@@ -27,13 +28,12 @@ export const Hero: React.FC<HeroProps> = () => {
       </div>
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-        {/* Company Logo Centered - blended with mix-blend-multiply */}
+        {/* Company Logo Centered */}
         <div className="mb-4 sm:mb-6 transform hover:scale-105 transition-transform duration-300">
           <div className="p-1 inline-block">
-            <img
-              src={GOURMETIZE_LOGO}
+            <LogoImg
               alt="Assessoria Gourmetize"
-              className="h-14 sm:h-20 md:h-24 lg:h-28 w-auto mx-auto object-contain mix-blend-multiply"
+              className="h-14 sm:h-20 md:h-24 lg:h-28 w-auto mx-auto object-contain"
             />
           </div>
         </div>

@@ -8,15 +8,17 @@ interface ScrollRevealProps {
   duration?: number;
   className?: string;
   distance?: number;
+  once?: boolean;
 }
 
 export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
   delay = 0,
   direction = 'up',
-  duration = 0.6,
+  duration = 0.5,
   className = '',
-  distance = 40,
+  distance = 30,
+  once = true,
 }) => {
   const getInitialPosition = () => {
     switch (direction) {
@@ -41,7 +43,7 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
         opacity: 0,
         x: initialPos.x,
         y: initialPos.y,
-        scale: direction === 'none' ? 0.95 : 1,
+        scale: direction === 'none' ? 0.98 : 1,
       }}
       whileInView={{
         opacity: 1,
@@ -50,18 +52,20 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
         scale: 1,
       }}
       viewport={{
-        once: false, // Crucial: reappears when scrolling down, disappears when scrolling up past it
-        amount: 0.12,
-        margin: '0px 0px -40px 0px',
+        once,
+        amount: 0.08,
+        margin: '0px 0px -30px 0px',
       }}
       transition={{
         duration,
         delay,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.25, 0.1, 0.25, 1],
       }}
-      className={className}
+      style={{ willChange: 'opacity, transform' }}
+      className={`transform-gpu ${className}`}
     >
       {children}
     </motion.div>
   );
 };
+

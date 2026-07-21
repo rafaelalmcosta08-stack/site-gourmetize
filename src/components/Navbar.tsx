@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Menu, X, PhoneCall } from 'lucide-react';
+import { LogoImg } from './LogoImg';
 
 export const GOURMETIZE_LOGO = "https://res.cloudinary.com/epo1w9hl/image/upload/v1784657082/3.0_Gourmetize_udgsmm.png";
 
@@ -38,8 +39,7 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2 group">
-          <img
-            src={GOURMETIZE_LOGO}
+          <LogoImg
             alt="Assessoria Gourmetize"
             className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
           />
