@@ -4,7 +4,11 @@ import { LogoImg } from './LogoImg';
 
 export const GOURMETIZE_LOGO = "https://res.cloudinary.com/epo1w9hl/image/upload/v1784657082/3.0_Gourmetize_udgsmm.png";
 
-export const Navbar: React.FC = () => {
+interface NavbarProps {
+  onOpenAdmin?: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -80,7 +84,7 @@ export const Navbar: React.FC = () => {
         </nav>
 
         {/* Right CTA / Status */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3">
           <div className="flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 px-3 py-1.5 rounded-full text-xs font-medium text-emerald-400">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
             <span>Atendimento Online</span>

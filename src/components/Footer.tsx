@@ -2,7 +2,11 @@ import React from 'react';
 import { LogoImg } from './LogoImg';
 import { Instagram, Linkedin, MessageCircle, ArrowUp } from 'lucide-react';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenAdmin?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -67,8 +71,10 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Back to top button */}
-        <div className="mt-8 pt-8 border-t border-zinc-900 flex justify-between items-center text-[11px] text-zinc-600">
-          <span>Desenvolvido para Máxima Conversão de Vendas</span>
+        <div className="mt-8 pt-8 border-t border-zinc-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-zinc-600">
+          <div className="flex items-center gap-4">
+            <span>Desenvolvido para Máxima Conversão de Vendas</span>
+          </div>
           <button
             onClick={scrollToTop}
             className="flex items-center gap-1.5 text-zinc-400 hover:text-[#FFAA48] transition-colors cursor-pointer"
