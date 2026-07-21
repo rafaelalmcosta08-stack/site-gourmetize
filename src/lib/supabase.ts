@@ -19,9 +19,10 @@ export function getStoredSupabaseConfig(): SupabaseConfig {
     console.error('Error reading Supabase config:', err);
   }
 
+  const metaEnv = (import.meta as any).env || {};
   return {
-    url: import.meta.env.VITE_SUPABASE_URL || '',
-    anonKey: import.meta.env.VITE_SUPABASE_ANON_KEY || '',
+    url: metaEnv.VITE_SUPABASE_URL || '',
+    anonKey: metaEnv.VITE_SUPABASE_ANON_KEY || '',
   };
 }
 
