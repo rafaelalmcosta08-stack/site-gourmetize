@@ -16,15 +16,48 @@ export const LeadCapture: React.FC<LeadCaptureProps> = ({ onSubmitSuccess }) => 
     monthlyRevenue: 'R$ 20k a R$ 50k',
   });
 
+  const capitalizeWords = (str: string) => {
+    if (!str) return '';
+    return str.replace(/(?:^|\s)\S/g, (char) => char.toUpperCase());
+  };
+
+  const handleEmailChange = (val: string) => {
+    return val.replace(/\s+/g, '');
+  };
+
+  const [phoneError, setPhoneError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handlePhoneChange = (val: string) => {
+    // Strip all non-digit characters so no letters or illegal symbols can be typed
+    const digitsOnly = val.replace(/\D/g, '');
+    const trimmed = digitsOnly.slice(0, 11);
+
+    if (trimmed.length >= 10 && phoneError) {
+      setPhoneError('');
+    }
+
+    if (trimmed.length === 0) return '';
+    if (trimmed.length <= 2) return `(${trimmed}`;
+    if (trimmed.length <= 6) return `(${trimmed.slice(0, 2)}) ${trimmed.slice(2)}`;
+    if (trimmed.length <= 10) return `(${trimmed.slice(0, 2)}) ${trimmed.slice(2, 6)}-${trimmed.slice(6)}`;
+    return `(${trimmed.slice(0, 2)}) ${trimmed.slice(2, 7)}-${trimmed.slice(7)}`;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const phoneDigits = formData.phone.replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
+      setPhoneError('Por favor, informe todos os dígitos do telefone com DDD (10 ou 11 dígitos).');
+      return;
+    }
+
     if (!formData.name || !formData.email || !formData.phone) {
       alert('Por favor, preencha todos os campos obrigatórios.');
       return;
     }
 
+    setPhoneError('');
     setIsSubmitting(true);
 
     setTimeout(() => {
@@ -104,15 +137,9 @@ export const LeadCapture: React.FC<LeadCaptureProps> = ({ onSubmitSuccess }) => 
           {/* Right Column - Form */}
           <div className="lg:col-span-6">
             <div className="bg-zinc-900 border border-zinc-800 text-white rounded-2xl p-6 sm:p-8 shadow-2xl relative">
-              <div className="mb-6 flex items-center justify-between border-b border-zinc-800 pb-4">
-                <div>
-                  <h3 className="text-xl font-extrabold text-white">Solicitar Análise Gratuita</h3>
-                  <p className="text-xs text-zinc-400 mt-1">Descubra como multiplicar o faturamento do seu restaurante</p>
-                </div>
-                <div className="bg-[#FFAA48]/10 border border-[#FFAA48]/30 text-[#FFAA48] text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>Atendimento Prioritário</span>
-                </div>
+              <div className="mb-6 border-b border-zinc-800 pb-4">
+                <h3 className="text-xl font-extrabold text-white">Solicitar Análise Gratuita</h3>
+                <p className="text-xs text-zinc-400 mt-1">Descubra como multiplicar o faturamento do seu restaurante</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -124,10 +151,11 @@ export const LeadCapture: React.FC<LeadCaptureProps> = ({ onSubmitSuccess }) => 
                   <input
                     type="text"
                     required
+                    autoCapitalize="words"
                     placeholder="Ex: Carlos Silva"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-zinc-800/90 border border-zinc-700/80 rounded-lg px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFAA48] transition-colors"
+                    onChange={(e) => setFormData({ ...formData, name: capitalizeWords(e.target.value) })}
+                    className="w-full bg-zinc-800/90 border border-zinc-700/80 rounded-lg px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFAA48] transition-colors capitalize"
                   />
                 </div>
 
@@ -139,9 +167,11 @@ export const LeadCapture: React.FC<LeadCaptureProps> = ({ onSubmitSuccess }) => 
                   <input
                     type="email"
                     required
+                    autoCapitalize="none"
                     placeholder="carlos@restaurante.com.br"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) => setFormData({ ...formData, email: handleEmailChange(e.target.value) })}
+                    onKeyDown={(e) => { if (e.key === ' ') e.preventDefault(); }}
                     className="w-full bg-zinc-800/90 border border-zinc-700/80 rounded-lg px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFAA48] transition-colors"
                   />
                 </div>
@@ -161,10 +191,17 @@ export const LeadCapture: React.FC<LeadCaptureProps> = ({ onSubmitSuccess }) => 
                       required
                       placeholder="(11) 99999-8888"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-zinc-800/90 border border-zinc-700/80 rounded-lg pl-20 pr-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFAA48] transition-colors"
+                      onChange={(e) => setFormData({ ...formData, phone: handlePhoneChange(e.target.value) })}
+                      className={`w-full bg-zinc-800/90 border ${
+                        phoneError ? 'border-red-500' : 'border-zinc-700/80'
+                      } rounded-lg pl-20 pr-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFAA48] transition-colors`}
                     />
                   </div>
+                  {phoneError && (
+                    <p className="text-red-400 text-xs font-semibold mt-1.5 flex items-center gap-1">
+                      <span>⚠️</span> {phoneError}
+                    </p>
+                  )}
                 </div>
 
                 {/* Company Name */}
@@ -174,10 +211,11 @@ export const LeadCapture: React.FC<LeadCaptureProps> = ({ onSubmitSuccess }) => 
                   </label>
                   <input
                     type="text"
+                    autoCapitalize="words"
                     placeholder="Ex: Bella Napoli Pizzaria"
                     value={formData.companyName}
-                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                    className="w-full bg-zinc-800/90 border border-zinc-700/80 rounded-lg px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFAA48] transition-colors"
+                    onChange={(e) => setFormData({ ...formData, companyName: capitalizeWords(e.target.value) })}
+                    className="w-full bg-zinc-800/90 border border-zinc-700/80 rounded-lg px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#FFAA48] transition-colors capitalize"
                   />
                 </div>
 
