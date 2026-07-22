@@ -2,7 +2,7 @@ import React from 'react';
 import { ShieldCheck, TrendingUp, Clock, ArrowUpRight } from 'lucide-react';
 import { LogoImg } from './LogoImg';
 
-export const GOURMETIZE_LOGO = "https://res.cloudinary.com/epo1w9hl/image/upload/v1784750767/Gourmetize__1_-removebg-preview_bdznbn.png";
+export const GOURMETIZE_LOGO = "https://res.cloudinary.com/epo1w9hl/image/upload/v1784751250/Gourmetize__2_-removebg-preview_bokxzy.png";
 
 interface HeroProps {
   onCtaClick?: () => void;
@@ -29,16 +29,15 @@ export const Hero: React.FC<HeroProps> = () => {
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         {/* Company Logo Centered & Close to Title */}
-        <div className="mb-2 sm:mb-3 transform hover:scale-105 transition-transform duration-300">
+        <div className="mt-8 sm:mt-12 md:mt-14 -mb-8 sm:-mb-10 md:-mb-12 transform hover:scale-105 transition-transform duration-300">
           <LogoImg
             alt="Assessoria Gourmetize"
-            className="h-28 sm:h-36 md:h-44 w-auto mx-auto object-contain"
+            className="h-24 sm:h-32 md:h-36 lg:h-40 w-auto mx-auto object-contain"
           />
         </div>
 
         {/* Main Headline styled like the reference layout */}
-        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight leading-[1.12] text-black max-w-3xl mx-auto">
-          <span className="font-semibold block">DO CARDÁPIO AO CAIXA:</span>
+        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight leading-[1.12] text-black max-w-3xl mx-auto z-10 relative">
           <span className="font-semibold block">TUDO QUE SEU RESTAURANTE PRECISA,</span>
           <span className="font-black block text-black">NUM SÓ LUGAR.</span>
         </h1>

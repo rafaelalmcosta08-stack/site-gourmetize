@@ -1,7 +1,7 @@
 let cachedTransparentLogo: string | null = null;
 let logoProcessingPromise: Promise<string> | null = null;
 
-export const GOURMETIZE_LOGO_URL = "https://res.cloudinary.com/epo1w9hl/image/upload/v1784750767/Gourmetize__1_-removebg-preview_bdznbn.png";
+export const GOURMETIZE_LOGO_URL = "https://res.cloudinary.com/epo1w9hl/image/upload/v1784751250/Gourmetize__2_-removebg-preview_bokxzy.png";
 
 /**
  * Loads the image, removes the white background on HTML5 Canvas with smooth anti-aliasing,
@@ -54,6 +54,7 @@ export function getTransparentLogo(src: string = GOURMETIZE_LOGO_URL): Promise<s
         }
 
         ctx.putImageData(imageData, 0, 0);
+
         const resultDataUrl = canvas.toDataURL('image/png');
         cachedTransparentLogo = resultDataUrl;
         resolve(resultDataUrl);
