@@ -1,8 +1,9 @@
 import React from 'react';
 import { ShieldCheck, TrendingUp, Clock, ArrowUpRight } from 'lucide-react';
 import { LogoImg } from './LogoImg';
+import { CoolButton } from './CoolButton';
 
-export const GOURMETIZE_LOGO = "https://res.cloudinary.com/epo1w9hl/image/upload/v1784751250/Gourmetize__2_-removebg-preview_bokxzy.png";
+export const GOURMETIZE_LOGO = "https://res.cloudinary.com/epo1w9hl/image/upload/v1784757041/Gourmetize__6_-removebg-preview_lih1ac.png";
 
 interface HeroProps {
   onCtaClick?: () => void;
@@ -47,15 +48,18 @@ export const Hero: React.FC<HeroProps> = () => {
           Cardápio digital, site profissional e um sistema completo pra controlar financeiro, entregas e clientes — sem depender de planilha, caderno ou cinco apps diferentes. A gente cuida do marketing, você cuida do salão.
         </p>
 
-        {/* Vibrant Green CTA Button with Arrow */}
+        {/* Vibrant Green CTA Button with Arrow & Cool Animations */}
         <div className="mt-6 sm:mt-7">
-          <a
+          <CoolButton
             href="#formulario"
-            className="inline-flex items-center gap-2 bg-[#00E676] hover:bg-[#00c966] text-black font-extrabold text-sm sm:text-base md:text-lg px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            variant="green"
+            className="px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base md:text-lg"
+            showPulse={true}
+            showShimmer={true}
+            showLiveDot={true}
           >
-            <span>Quero meu site pronto em 7 dias</span>
-            <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
-          </a>
+            Quero meu site pronto em 7 dias
+          </CoolButton>
         </div>
 
         {/* Trust Badges */}

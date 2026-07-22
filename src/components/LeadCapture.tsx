@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, CheckCircle2, Phone, ShieldCheck, Lock, Sparkles } from 'lucide-react';
 import { LeadFormData } from '../types';
+import { CoolButton } from './CoolButton';
 
 interface LeadCaptureProps {
   onSubmitSuccess: (data: LeadFormData) => void;
@@ -269,23 +270,26 @@ export const LeadCapture: React.FC<LeadCaptureProps> = ({ onSubmitSuccess }) => 
                 </div>
 
                 {/* Submit CTA Button */}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full mt-4 bg-[#00E676] hover:bg-[#00c865] text-black font-black text-base py-4 rounded-xl flex items-center justify-center gap-2 transition-all transform active:scale-95 shadow-lg green-neon-glow cursor-pointer disabled:opacity-50"
-                >
-                  {isSubmitting ? (
-                    <span className="flex items-center gap-2">
-                      <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                      <span>Enviando solicitação...</span>
-                    </span>
-                  ) : (
-                    <>
-                      <span>Receber mais informações</span>
-                      <ArrowRight className="w-5 h-5" />
-                    </>
-                  )}
-                </button>
+                <div className="mt-4 w-full">
+                  <CoolButton
+                    type="submit"
+                    disabled={isSubmitting}
+                    variant="green"
+                    fullWidth={true}
+                    className="py-4 text-base"
+                    showPulse={true}
+                    showShimmer={true}
+                    icon={
+                      isSubmitting ? (
+                        <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                      ) : (
+                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                      )
+                    }
+                  >
+                    {isSubmitting ? 'Enviando solicitação...' : 'Receber mais informações'}
+                  </CoolButton>
+                </div>
               </form>
 
               <div className="mt-4 text-center">

@@ -57,6 +57,15 @@
   box-shadow: 0 0 25px rgba(0, 230, 118, 0.4);
 }
 
+@keyframes buttonShimmer {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  40%, 100% { transform: translateX(300%) skewX(-20deg); }
+}
+
+.animate-button-shimmer {
+  animation: buttonShimmer 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

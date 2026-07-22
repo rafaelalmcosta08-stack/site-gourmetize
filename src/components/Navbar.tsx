@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Menu, X, PhoneCall } from 'lucide-react';
 import { LogoImg } from './LogoImg';
+import { CoolButton } from './CoolButton';
 
 export const GOURMETIZE_LOGO = "https://res.cloudinary.com/epo1w9hl/image/upload/v1784657082/3.0_Gourmetize_udgsmm.png";
 
@@ -90,13 +91,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
             <span>Atendimento Online</span>
           </div>
 
-          <button
+          <CoolButton
             onClick={() => scrollToSection('formulario')}
-            className="bg-[#00E676] hover:bg-[#00c865] text-black font-bold text-sm px-5 py-2.5 rounded-full flex items-center gap-1.5 transition-all transform hover:scale-105 shadow-lg green-neon-glow cursor-pointer"
+            variant="green"
+            className="px-5 py-2.5 text-xs sm:text-sm rounded-full"
+            showPulse={true}
+            showShimmer={true}
           >
-            <span>Alavancar Restaurante</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </button>
+            Alavancar Restaurante
+          </CoolButton>
         </div>
 
         {/* Mobile menu trigger */}
@@ -153,13 +156,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin }) => {
             Perguntas Frequentes
           </button>
           <div className="pt-2 border-t border-zinc-800 flex flex-col gap-2">
-            <button
+            <CoolButton
               onClick={() => scrollToSection('formulario')}
-              className="w-full bg-[#00E676] text-black font-extrabold text-sm py-3 rounded-full flex items-center justify-center gap-2"
+              variant="green"
+              fullWidth={true}
+              className="py-3 text-sm rounded-full"
+              showPulse={true}
+              showShimmer={true}
+              icon={<PhoneCall className="w-4 h-4" />}
             >
-              <PhoneCall className="w-4 h-4" />
-              <span>Quero falar com um especialista</span>
-            </button>
+              Quero falar com um especialista
+            </CoolButton>
           </div>
         </div>
       )}

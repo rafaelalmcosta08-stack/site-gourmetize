@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calculator as CalcIcon, TrendingUp, DollarSign, Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { CoolButton } from './CoolButton';
 
 export const Calculator: React.FC = () => {
   const [currentRevenue, setCurrentRevenue] = useState(40000);
@@ -128,13 +129,17 @@ export const Calculator: React.FC = () => {
                 </div>
 
                 {/* CTA */}
-                <a
+                <CoolButton
                   href="#formulario"
-                  className="w-full bg-[#00E676] hover:bg-[#00c865] text-black font-extrabold text-sm py-4 rounded-xl flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02] shadow-lg green-neon-glow"
+                  variant="green"
+                  fullWidth={true}
+                  className="py-4 text-sm"
+                  showPulse={true}
+                  showShimmer={true}
+                  icon={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
                 >
-                  <span>Quero Alcançar Este Resultado Na Minha Região</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
+                  Quero Alcançar Este Resultado Na Minha Região
+                </CoolButton>
 
                 <p className="text-[11px] text-zinc-500 text-center">
                   *Projeção baseada na média histórica do método Gourmetize em mais de 2.000 operações ativas.

@@ -2,6 +2,7 @@ import React from 'react';
 import { CheckCircle2, MessageCircle, X, Sparkles, PhoneCall, Clock } from 'lucide-react';
 import { LeadFormData } from '../types';
 import { GOURMETIZE_LOGO } from './Navbar';
+import { CoolButton } from './CoolButton';
 
 interface LeadModalProps {
   leadData: LeadFormData | null;
@@ -72,13 +73,17 @@ export const LeadModal: React.FC<LeadModalProps> = ({ leadData, onClose }) => {
 
         {/* Action Buttons */}
         <div className="space-y-3 pt-2">
-          <button
+          <CoolButton
             onClick={handleWhatsAppRedirect}
-            className="w-full bg-[#00E676] hover:bg-[#00c865] text-black font-extrabold text-sm py-4 rounded-xl flex items-center justify-center gap-2 transition-transform transform hover:scale-105 shadow-xl green-neon-glow cursor-pointer"
+            variant="green"
+            fullWidth={true}
+            className="py-4 text-sm"
+            showPulse={true}
+            showShimmer={true}
+            icon={<MessageCircle className="w-5 h-5 fill-black" />}
           >
-            <MessageCircle className="w-5 h-5 fill-black" />
-            <span>Falar no WhatsApp com Especialista</span>
-          </button>
+            Falar no WhatsApp com Especialista
+          </CoolButton>
 
           <button
             onClick={onClose}

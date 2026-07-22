@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { CoolButton } from './CoolButton';
 
 interface YellowCalloutProps {
   onCtaClick: () => void;
@@ -27,13 +27,15 @@ export const YellowCallout: React.FC<YellowCalloutProps> = ({ onCtaClick }) => {
 
         {/* Scroll to Form CTA */}
         <div className="pt-4 flex justify-center">
-          <button
+          <CoolButton
             onClick={onCtaClick}
-            className="bg-black hover:bg-zinc-900 text-white font-black text-lg px-8 py-4 rounded-full flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-2xl cursor-pointer group"
+            variant="black"
+            className="px-8 py-4 text-base sm:text-lg rounded-full"
+            showPulse={false}
+            showShimmer={true}
           >
-            <span>Preencher Formulário de Diagnóstico</span>
-            <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-[#FFAA48]" />
-          </button>
+            Preencher Formulário de Diagnóstico
+          </CoolButton>
         </div>
 
       </div>
