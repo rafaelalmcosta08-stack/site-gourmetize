@@ -18,7 +18,7 @@ import {
   FileText,
 } from 'lucide-react';
 import { ClientRecord } from '../../types/admin';
-import { SupabaseConfigCard } from './SupabaseConfigCard';
+
 
 interface ClientesTabProps {
   clients: ClientRecord[];
@@ -66,6 +66,7 @@ export const ClientesTab: React.FC<ClientesTabProps> = ({
   const activeClients = clients.filter((c) => c.status === 'Ativo');
   const totalMRR = activeClients.reduce((acc, c) => acc + (c.contractValue || 0), 0);
   const avgContract = activeClients.length > 0 ? Math.round(totalMRR / activeClients.length) : 0;
+  const retentionRate = clients.length > 0 ? ((activeClients.length / clients.length) * 100).toFixed(1) + '%' : '100%';
 
   const handleCreateClient = (e: React.FormEvent) => {
     e.preventDefault();
@@ -131,9 +132,6 @@ export const ClientesTab: React.FC<ClientesTabProps> = ({
         </div>
       </div>
 
-      {/* Supabase Connection Card */}
-      <SupabaseConfigCard />
-
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-zinc-900 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
@@ -162,7 +160,7 @@ export const ClientesTab: React.FC<ClientesTabProps> = ({
           </div>
           <div>
             <span className="text-xs text-zinc-400 font-medium">Retenção de Carteira</span>
-            <h3 className="text-xl font-black text-white">96.8%</h3>
+            <h3 className="text-xl font-black text-white">{retentionRate}</h3>
           </div>
         </div>
       </div>

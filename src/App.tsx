@@ -19,6 +19,8 @@ import { DashboardTab } from './components/admin/DashboardTab';
 import { PreenchimentosTab } from './components/admin/PreenchimentosTab';
 import { CrmTab } from './components/admin/CrmTab';
 import { ClientesTab } from './components/admin/ClientesTab';
+import { RelatoriosTab } from './components/admin/RelatoriosTab';
+import { ConfiguracoesTab } from './components/admin/ConfiguracoesTab';
 import { AdminLogin } from './components/admin/AdminLogin';
 
 import {
@@ -328,6 +330,9 @@ export default function App() {
         unreadCount={newSubmissionsCount}
         onResetData={handleResetData}
         onLogout={handleLogout}
+        submissions={submissions}
+        crmLeads={crmLeads}
+        clients={clients}
       >
         {activeAdminTab === 'dashboard' && (
           <DashboardTab
@@ -368,6 +373,18 @@ export default function App() {
             onUpdateClient={handleUpdateClient}
             onDeleteClient={handleDeleteClient}
           />
+        )}
+
+        {activeAdminTab === 'relatorios' && (
+          <RelatoriosTab
+            submissions={submissions}
+            crmLeads={crmLeads}
+            clients={clients}
+          />
+        )}
+
+        {activeAdminTab === 'configuracoes' && (
+          <ConfiguracoesTab />
         )}
       </AdminLayout>
     );

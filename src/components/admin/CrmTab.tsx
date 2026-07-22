@@ -182,34 +182,59 @@ export const CrmTab: React.FC<CrmTabProps> = ({
               {/* Cards List */}
               <div className="space-y-3 flex-1 overflow-y-auto max-h-[600px] pr-1">
                 {stageLeads.length === 0 ? (
-                  <div className="text-center py-8 text-[11px] text-zinc-600 italic border border-dashed border-zinc-800 rounded-xl">
-                    Nenhuma oportunidade nesta etapa
+                  <div className="text-center py-6 px-3 text-[11px] text-zinc-500 bg-zinc-950/50 border border-dashed border-zinc-800 rounded-2xl space-y-2">
+                    <p className="italic">Nenhuma oportunidade aqui</p>
+                    <button
+                      onClick={() => {
+                        setForm({ ...form, stage: stageObj.id });
+                        setShowAddModal(true);
+                      }}
+                      className="text-[10px] font-extrabold text-[#FFAA48] hover:underline flex items-center justify-center gap-1 mx-auto cursor-pointer"
+                    >
+                      <Plus className="w-3 h-3" />
+                      <span>Adicionar nesta etapa</span>
+                    </button>
                   </div>
                 ) : (
                   stageLeads.map((lead) => {
                     const phoneDigits = lead.phone.replace(/\D/g, '');
                     const whatsappUrl = `https://wa.me/55${phoneDigits}`;
 
+                    // Stagnation calculation (days since createdAt or last contact)
+                    const createdDate = new Date(lead.createdAt);
+                    const daysOld = Math.floor((new Date().getTime() - createdDate.getTime()) / (1000 * 3600 * 24));
+                    const isStagnant = daysOld >= 3 && lead.stage !== 'fechado' && lead.stage !== 'perdido';
+
                     return (
                       <div
                         key={lead.id}
-                        className="bg-zinc-950 border border-zinc-800 hover:border-[#FFAA48]/60 p-3.5 rounded-2xl shadow-md space-y-3 transition-all group relative"
+                        className={`bg-zinc-950 border hover:border-[#FFAA48]/60 p-3.5 rounded-2xl shadow-md space-y-3 transition-all group relative ${
+                          isStagnant ? 'border-amber-500/40 bg-amber-500/5' : 'border-zinc-800'
+                        }`}
                       >
-                        <div className="flex items-start justify-between">
+                        <div className="flex items-start justify-between gap-2">
                           <div>
-                            <span className="text-[10px] font-bold text-zinc-500 uppercase block">
-                              {lead.segment}
-                            </span>
+                            <div className="flex items-center gap-1.5 flex-wrap mb-1">
+                              <span className="text-[9px] font-black bg-zinc-900 border border-zinc-800 text-zinc-400 px-2 py-0.5 rounded-md uppercase">
+                                {lead.segment}
+                              </span>
+                              {isStagnant && (
+                                <span className="text-[9px] font-black bg-amber-500/20 text-amber-400 border border-amber-500/30 px-1.5 py-0.5 rounded-md flex items-center gap-1">
+                                  <Clock className="w-2.5 h-2.5" /> Parado há {daysOld}d
+                                </span>
+                              )}
+                            </div>
                             <h4 className="text-xs font-black text-white group-hover:text-[#FFAA48] transition-colors">
                               {lead.companyName}
                             </h4>
                             <p className="text-[11px] text-zinc-400 font-medium mt-0.5">{lead.name}</p>
                           </div>
 
-                          <div className="text-right">
-                            <span className="text-xs font-black text-[#00E676]">
+                          <div className="text-right shrink-0">
+                            <span className="text-xs font-black text-[#00E676] block">
                               R$ {lead.estimatedValue}
                             </span>
+                            <span className="text-[9px] text-zinc-500">/mês</span>
                           </div>
                         </div>
 
@@ -224,7 +249,7 @@ export const CrmTab: React.FC<CrmTabProps> = ({
                             <span>WhatsApp</span>
                           </a>
 
-                          <span className="text-[10px] text-zinc-500">
+                          <span className="text-[10px] font-semibold text-zinc-500">
                             {lead.responsible}
                           </span>
                         </div>

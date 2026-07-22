@@ -43,6 +43,13 @@ export const PreenchimentosTab: React.FC<PreenchimentosTabProps> = ({
   const [selectedSub, setSelectedSub] = useState<LeadSubmission | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
 
+  // Pagination & Bulk Selection State
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [sortField, setSortField] = useState<'createdAt' | 'companyName' | 'name' | 'segment' | 'status'>('createdAt');
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
+  const pageSize = 10;
+
   // New Lead Form State
   const [newLead, setNewLead] = useState({
     name: '',
@@ -67,6 +74,49 @@ export const PreenchimentosTab: React.FC<PreenchimentosTabProps> = ({
 
     return matchesSearch && matchesSegment && matchesStatus;
   });
+
+  // Sorting
+  const sortedSubmissions = [...filteredSubmissions].sort((a, b) => {
+    let aVal = a[sortField] || '';
+    let bVal = b[sortField] || '';
+    if (sortField === 'createdAt') {
+      aVal = new Date(a.createdAt).getTime();
+      bVal = new Date(b.createdAt).getTime();
+    }
+    if (aVal < bVal) return sortDir === 'asc' ? -1 : 1;
+    if (aVal > bVal) return sortDir === 'asc' ? 1 : -1;
+    return 0;
+  });
+
+  // Pagination Slicing
+  const totalPages = Math.ceil(sortedSubmissions.length / pageSize) || 1;
+  const paginatedSubmissions = sortedSubmissions.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+  const toggleSelectAll = () => {
+    if (selectedIds.length === paginatedSubmissions.length) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(paginatedSubmissions.map((s) => s.id));
+    }
+  };
+
+  const toggleSelectOne = (id: string) => {
+    setSelectedIds((prev) => (prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]));
+  };
+
+  const handleBulkStatusChange = (newStatus: LeadSubmission['status']) => {
+    selectedIds.forEach((id) => onUpdateStatus(id, newStatus));
+    setSelectedIds([]);
+  };
+
+  const handleSort = (field: typeof sortField) => {
+    if (sortField === field) {
+      setSortDir(sortDir === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDir('desc');
+    }
+  };
 
   // Export to CSV Function
   const exportToCSV = () => {
@@ -204,37 +254,118 @@ export const PreenchimentosTab: React.FC<PreenchimentosTabProps> = ({
         </div>
       </div>
 
+      {/* Bulk Actions Banner */}
+      {selectedIds.length > 0 && (
+        <div className="bg-[#FFAA48]/10 border border-[#FFAA48]/30 p-4 rounded-2xl flex items-center justify-between text-xs animate-fadeIn">
+          <span className="font-bold text-[#FFAA48]">
+            {selectedIds.length} item(s) selecionado(s)
+          </span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => handleBulkStatusChange('Em Atendimento')}
+              className="bg-zinc-800 hover:bg-zinc-700 text-zinc-200 px-3 py-1.5 rounded-lg font-bold border border-zinc-700"
+            >
+              Marcar Em Atendimento
+            </button>
+            <button
+              onClick={() => handleBulkStatusChange('Arquivado')}
+              className="bg-zinc-800 hover:bg-zinc-700 text-zinc-200 px-3 py-1.5 rounded-lg font-bold border border-zinc-700"
+            >
+              Arquivar Selecionados
+            </button>
+            <button
+              onClick={() => setSelectedIds([])}
+              className="text-zinc-400 hover:text-white underline ml-2"
+            >
+              Desmarcar
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Submissions Data Table */}
       <div className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-zinc-950/80 border-b border-zinc-800 text-[11px] font-black uppercase tracking-wider text-zinc-400">
-                <th className="py-3.5 px-4">Restaurante / Empresa</th>
-                <th className="py-3.5 px-4">Contato Solicitante</th>
-                <th className="py-3.5 px-4">Segmento</th>
+              <tr className="bg-zinc-950/80 border-b border-zinc-800 text-[11px] font-black uppercase tracking-wider text-zinc-400 select-none">
+                <th className="py-3.5 px-4 w-10">
+                  <input
+                    type="checkbox"
+                    checked={
+                      paginatedSubmissions.length > 0 &&
+                      selectedIds.length === paginatedSubmissions.length
+                    }
+                    onChange={toggleSelectAll}
+                    className="w-4 h-4 accent-[#FFAA48] rounded cursor-pointer"
+                  />
+                </th>
+                <th
+                  onClick={() => handleSort('companyName')}
+                  className="py-3.5 px-4 cursor-pointer hover:text-white"
+                >
+                  Restaurante / Empresa {sortField === 'companyName' ? (sortDir === 'asc' ? '▲' : '▼') : ''}
+                </th>
+                <th
+                  onClick={() => handleSort('name')}
+                  className="py-3.5 px-4 cursor-pointer hover:text-white"
+                >
+                  Contato Solicitante {sortField === 'name' ? (sortDir === 'asc' ? '▲' : '▼') : ''}
+                </th>
+                <th
+                  onClick={() => handleSort('segment')}
+                  className="py-3.5 px-4 cursor-pointer hover:text-white"
+                >
+                  Segmento {sortField === 'segment' ? (sortDir === 'asc' ? '▲' : '▼') : ''}
+                </th>
                 <th className="py-3.5 px-4">Faturamento</th>
-                <th className="py-3.5 px-4">Data Envio</th>
-                <th className="py-3.5 px-4">Status</th>
+                <th
+                  onClick={() => handleSort('createdAt')}
+                  className="py-3.5 px-4 cursor-pointer hover:text-white"
+                >
+                  Data Envio {sortField === 'createdAt' ? (sortDir === 'asc' ? '▲' : '▼') : ''}
+                </th>
+                <th
+                  onClick={() => handleSort('status')}
+                  className="py-3.5 px-4 cursor-pointer hover:text-white"
+                >
+                  Status {sortField === 'status' ? (sortDir === 'asc' ? '▲' : '▼') : ''}
+                </th>
                 <th className="py-3.5 px-4 text-right">Ações</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-800/60 text-xs">
-              {filteredSubmissions.length === 0 ? (
+              {paginatedSubmissions.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="text-center py-12 text-zinc-500">
+                  <td colSpan={8} className="text-center py-12 text-zinc-500">
                     Nenhum formulário encontrado com esses filtros.
                   </td>
                 </tr>
               ) : (
-                filteredSubmissions.map((sub) => {
+                paginatedSubmissions.map((sub) => {
+                  const isSelected = selectedIds.includes(sub.id);
                   const phoneDigits = sub.phone.replace(/\D/g, '');
                   const whatsappUrl = `https://wa.me/55${phoneDigits}?text=Ol%C3%A1%20${encodeURIComponent(
                     sub.name
                   )}%21%20Sou%20da%20Assessoria%20Gourmetize%20referente%20%C3%A0%20sua%20solicita%C3%A7%C3%A3o%20de%20an%C3%A1lise%20gratuita.`;
 
                   return (
-                    <tr key={sub.id} className="hover:bg-zinc-800/40 transition-colors group">
+                    <tr
+                      key={sub.id}
+                      className={`hover:bg-zinc-800/40 transition-colors group ${
+                        isSelected ? 'bg-[#FFAA48]/5' : ''
+                      }`}
+                    >
+                      {/* Checkbox */}
+                      <td className="py-4 px-4">
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={() => toggleSelectOne(sub.id)}
+                          className="w-4 h-4 accent-[#FFAA48] rounded cursor-pointer"
+                        />
+                      </td>
+
                       {/* Empresa */}
                       <td className="py-4 px-4">
                         <div className="font-bold text-white flex items-center gap-2">
@@ -342,6 +473,34 @@ export const PreenchimentosTab: React.FC<PreenchimentosTabProps> = ({
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Pagination Bar */}
+        <div className="bg-zinc-950 px-6 py-4 border-t border-zinc-800 flex items-center justify-between text-xs text-zinc-400">
+          <div>
+            Mostrando <strong className="text-white">{paginatedSubmissions.length}</strong> de{' '}
+            <strong className="text-white">{sortedSubmissions.length}</strong> registros
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              className="px-3 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 disabled:opacity-40 disabled:hover:bg-zinc-800 text-white font-bold transition-colors cursor-pointer"
+            >
+              Anterior
+            </button>
+            <span className="text-zinc-300 font-bold px-2">
+              Página {currentPage} de {totalPages}
+            </span>
+            <button
+              disabled={currentPage >= totalPages}
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              className="px-3 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 disabled:opacity-40 disabled:hover:bg-zinc-800 text-white font-bold transition-colors cursor-pointer"
+            >
+              Próxima
+            </button>
+          </div>
         </div>
       </div>
 
