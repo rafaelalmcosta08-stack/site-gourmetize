@@ -51,12 +51,12 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
       }}
       viewport={{
         once,
-        amount: 0.05,
-        margin: '0px 0px -20px 0px',
+        amount: 0.01,
+        margin: '0px 0px 50px 0px',
       }}
       transition={{
-        duration,
-        delay,
+        duration: Math.min(duration, 0.4),
+        delay: Math.min(delay, 0.1),
         ease: 'easeOut',
       }}
       className={className}

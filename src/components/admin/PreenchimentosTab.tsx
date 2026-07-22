@@ -50,7 +50,7 @@ export const PreenchimentosTab: React.FC<PreenchimentosTabProps> = ({
     phone: '',
     companyName: '',
     segment: 'Pizzarias',
-    monthlyRevenue: 'R$ 20k a R$ 50k',
+    monthlyRevenue: 'Selecionar',
     notes: '',
   });
 
@@ -175,10 +175,16 @@ export const PreenchimentosTab: React.FC<PreenchimentosTabProps> = ({
             <option value="Todos">Todos os Segmentos</option>
             <option value="Pizzarias">Pizzarias</option>
             <option value="Hamburguerias">Hamburguerias</option>
-            <option value="Comida Japonesa / Sushi">Comida Japonesa / Sushi</option>
-            <option value="Restaurante Quilo / Buffet">Restaurante Quilo / Buffet</option>
-            <option value="Bar / Pub / Choperia">Bar / Pub / Choperia</option>
-            <option value="Bistrô / À la Carte">Bistrô / À la Carte</option>
+            <option value="Restaurante comida brasileira">Restaurante comida brasileira</option>
+            <option value="Churrascaria steakhouse">Churrascaria steakhouse</option>
+            <option value="Restaurante japonês">Restaurante japonês</option>
+            <option value="Restaurante massas italiano">Restaurante massas italiano</option>
+            <option value="Restaurante comida árabe">Restaurante comida árabe</option>
+            <option value="Açaí / sorveteria">Açaí / sorveteria</option>
+            <option value="Cafeteria">Cafeteria</option>
+            <option value="Doceria">Doceria</option>
+            <option value="Gastrobar">Gastrobar</option>
+            <option value="Outros">Outros</option>
           </select>
         </div>
 
@@ -504,10 +510,16 @@ export const PreenchimentosTab: React.FC<PreenchimentosTabProps> = ({
                   >
                     <option value="Pizzarias">Pizzarias</option>
                     <option value="Hamburguerias">Hamburguerias</option>
-                    <option value="Comida Japonesa / Sushi">Comida Japonesa / Sushi</option>
-                    <option value="Restaurante Quilo / Buffet">Restaurante Quilo / Buffet</option>
-                    <option value="Bar / Pub / Choperia">Bar / Pub / Choperia</option>
-                    <option value="Bistrô / À la Carte">Bistrô / À la Carte</option>
+                    <option value="Restaurante comida brasileira">Restaurante comida brasileira</option>
+                    <option value="Churrascaria steakhouse">Churrascaria steakhouse</option>
+                    <option value="Restaurante japonês">Restaurante japonês</option>
+                    <option value="Restaurante massas italiano">Restaurante massas italiano</option>
+                    <option value="Restaurante comida árabe">Restaurante comida árabe</option>
+                    <option value="Açaí / sorveteria">Açaí / sorveteria</option>
+                    <option value="Cafeteria">Cafeteria</option>
+                    <option value="Doceria">Doceria</option>
+                    <option value="Gastrobar">Gastrobar</option>
+                    <option value="Outros">Outros</option>
                   </select>
                 </div>
 
@@ -518,10 +530,17 @@ export const PreenchimentosTab: React.FC<PreenchimentosTabProps> = ({
                     onChange={(e) => setNewLead({ ...newLead, monthlyRevenue: e.target.value })}
                     className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-[#FFAA48]"
                   >
-                    <option value="Até R$ 20.000 /mês">Até R$ 20.000 /mês</option>
-                    <option value="R$ 20k a R$ 50k">R$ 20.000 a R$ 50.000 /mês</option>
-                    <option value="R$ 50k a R$ 100k">R$ 50.000 a R$ 100.000 /mês</option>
-                    <option value="Acima de R$ 100.000 /mês">Acima de R$ 100.000 /mês</option>
+                    <option value="Selecionar">Selecionar</option>
+                    <option value="Até 30 mil">Até 30 mil</option>
+                    <option value="30 mil até 50 mil">30 mil até 50 mil</option>
+                    <option value="50 mil até 80 mil">50 mil até 80 mil</option>
+                    <option value="80 mil até 100 mil">80 mil até 100 mil</option>
+                    <option value="100 mil até 150 mil">100 mil até 150 mil</option>
+                    <option value="150 mil até 250 mil">150 mil até 250 mil</option>
+                    <option value="250 mil até 400 mil">250 mil até 400 mil</option>
+                    <option value="400 mil até 600 mil">400 mil até 600 mil</option>
+                    <option value="600 mil até 1 milhão">600 mil até 1 milhão</option>
+                    <option value="Mais de 1 milhão">Mais de 1 milhão</option>
                   </select>
                 </div>
               </div>

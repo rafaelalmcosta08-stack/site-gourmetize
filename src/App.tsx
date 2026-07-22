@@ -375,7 +375,7 @@ export default function App() {
 
   /* RENDER PUBLIC LANDING PAGE (Clean view with no header bar) */
   return (
-    <div className="min-h-screen bg-black text-white font-sans antialiased overflow-x-hidden selection:bg-[#FFAA48] selection:text-black">
+    <div className="min-h-screen bg-black text-white font-sans antialiased selection:bg-[#FFAA48] selection:text-black">
       <main>
         <Hero onCtaClick={scrollToForm} />
 
