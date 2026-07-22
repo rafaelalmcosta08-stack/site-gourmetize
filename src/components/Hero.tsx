@@ -1,8 +1,8 @@
 import React from 'react';
-import { Star, ShieldCheck, TrendingUp, Clock } from 'lucide-react';
+import { ShieldCheck, TrendingUp, Clock, ArrowUpRight } from 'lucide-react';
 import { LogoImg } from './LogoImg';
 
-export const GOURMETIZE_LOGO = "https://res.cloudinary.com/epo1w9hl/image/upload/v1784657082/3.0_Gourmetize_udgsmm.png";
+export const GOURMETIZE_LOGO = "https://res.cloudinary.com/epo1w9hl/image/upload/v1784750767/Gourmetize__1_-removebg-preview_bdznbn.png";
 
 interface HeroProps {
   onCtaClick?: () => void;
@@ -10,7 +10,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = () => {
   return (
-    <section className="relative bg-[#FFAA48] orange-gradient-bg min-h-[78vh] sm:min-h-[82vh] md:min-h-[85vh] lg:min-h-[87vh] flex flex-col justify-center items-center py-8 sm:py-12 md:py-16 text-black overflow-hidden">
+    <section className="relative bg-[#FFAA48] orange-gradient-bg min-h-[75vh] sm:min-h-[80vh] flex flex-col justify-center items-center py-10 sm:py-14 text-black overflow-hidden">
       {/* Background Geometric Arrow Patterns */}
       <div className="absolute inset-0 pointer-events-none opacity-15 flex items-center justify-center overflow-hidden">
         <svg
@@ -27,38 +27,35 @@ export const Hero: React.FC<HeroProps> = () => {
         </svg>
       </div>
 
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-        {/* Company Logo Centered */}
-        <div className="mb-4 sm:mb-6 transform hover:scale-105 transition-transform duration-300">
-          <div className="p-1 inline-block">
-            <LogoImg
-              alt="Assessoria Gourmetize"
-              className="h-14 sm:h-20 md:h-24 lg:h-28 w-auto mx-auto object-contain"
-            />
-          </div>
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+        {/* Company Logo Centered & Close to Title */}
+        <div className="mb-2 sm:mb-3 transform hover:scale-105 transition-transform duration-300">
+          <LogoImg
+            alt="Assessoria Gourmetize"
+            className="h-28 sm:h-36 md:h-44 w-auto mx-auto object-contain"
+          />
         </div>
 
-        {/* Verification Pill */}
-        <div className="inline-flex items-center gap-2 bg-black/10 border border-black/20 px-4 py-1.5 rounded-full text-xs sm:text-sm font-black tracking-wider uppercase mb-5 text-black shadow-sm">
-          <Star className="w-4 h-4 fill-black text-black" />
-          <span>Método Validado para Restaurantes</span>
-        </div>
-
-        {/* Main Impact Headline */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] uppercase text-black max-w-4xl mx-auto">
-          SEU SITE E CARDÁPIO <br className="hidden sm:inline" />
-          <span className="bg-black text-[#FFAA48] px-3 sm:px-5 py-1.5 sm:py-2 rounded-xl inline-block mt-2 shadow-2xl">
-            PRONTO EM 7 DIAS.
-          </span>
+        {/* Main Headline styled like the reference layout */}
+        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight leading-[1.12] text-black max-w-3xl mx-auto">
+          <span className="font-semibold block">DO CARDÁPIO AO CAIXA:</span>
+          <span className="font-semibold block">TUDO QUE SEU RESTAURANTE PRECISA,</span>
+          <span className="font-black block text-black">NUM SÓ LUGAR.</span>
         </h1>
 
-        {/* Subtitle / CTA Button */}
-        <div className="mt-5 sm:mt-7">
+        {/* Description Text */}
+        <p className="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg font-medium text-black/95 max-w-2xl mx-auto leading-relaxed text-center">
+          Cardápio digital, site profissional e um sistema completo pra controlar financeiro, entregas e clientes — sem depender de planilha, caderno ou cinco apps diferentes. A gente cuida do marketing, você cuida do salão.
+        </p>
+
+        {/* Vibrant Green CTA Button with Arrow */}
+        <div className="mt-6 sm:mt-7">
           <a
             href="#formulario"
-            className="inline-flex items-center gap-2.5 bg-black hover:bg-zinc-900 text-[#FFAA48] text-sm sm:text-base md:text-lg font-black uppercase tracking-wider px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-transform transform hover:scale-105 shadow-2xl"
+            className="inline-flex items-center gap-2 bg-[#00E676] hover:bg-[#00c966] text-black font-extrabold text-sm sm:text-base md:text-lg px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
           >
-            <span>Quero Meu Site Pronto Em 7 Dias</span>
+            <span>Quero meu site pronto em 7 dias</span>
+            <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
           </a>
         </div>
 
@@ -81,3 +78,4 @@ export const Hero: React.FC<HeroProps> = () => {
     </section>
   );
 };
+
