@@ -34,7 +34,7 @@ export const TickerTape: React.FC = () => {
   ];
 
   return (
-    <div className="relative py-3 overflow-hidden bg-black z-20">
+    <div className="relative py-3 overflow-hidden bg-black z-20 pointer-events-none">
       {/* Side Edge Fades for sleek visual transition */}
       <div className="absolute inset-y-0 left-0 w-20 sm:w-36 bg-gradient-to-r from-black to-transparent z-30 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-20 sm:w-36 bg-gradient-to-l from-black to-transparent z-30 pointer-events-none" />

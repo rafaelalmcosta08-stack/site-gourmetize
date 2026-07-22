@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     font-family: 'Montserrat', 'Plus Jakarta Sans', sans-serif;
+    touch-action: pan-y;
+    overflow-x: hidden;
   }
 }
 
@@ -15,34 +20,27 @@
 }
 
 @keyframes marqueeLeft {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0%, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 @keyframes marqueeRight {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0%); }
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0%, 0, 0); }
 }
 
 .animate-marquee-left {
   display: flex;
   width: max-content;
-  animation: marqueeLeft 28s linear infinite;
-  will-change: transform;
-  transform: translateZ(0);
+  animation: marqueeLeft 35s linear infinite;
+  pointer-events: none;
 }
 
 .animate-marquee-right {
   display: flex;
   width: max-content;
-  animation: marqueeRight 28s linear infinite;
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-.animate-marquee-left:hover,
-.animate-marquee-right:hover {
-  animation-play-state: paused;
+  animation: marqueeRight 35s linear infinite;
+  pointer-events: none;
 }
 
 /* Custom light soft orange glow and gradient effects for Assessoria Gourmetize */
@@ -72,3 +70,4 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #ffaa48;
 }
+

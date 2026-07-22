@@ -15,9 +15,9 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
   delay = 0,
   direction = 'up',
-  duration = 0.5,
+  duration = 0.4,
   className = '',
-  distance = 30,
+  distance = 20,
   once = true,
 }) => {
   const getInitialPosition = () => {
@@ -43,29 +43,27 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
         opacity: 0,
         x: initialPos.x,
         y: initialPos.y,
-        scale: direction === 'none' ? 0.98 : 1,
       }}
       whileInView={{
         opacity: 1,
         x: 0,
         y: 0,
-        scale: 1,
       }}
       viewport={{
         once,
-        amount: 0.08,
-        margin: '0px 0px -30px 0px',
+        amount: 0.05,
+        margin: '0px 0px -20px 0px',
       }}
       transition={{
         duration,
         delay,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: 'easeOut',
       }}
-      style={{ willChange: 'opacity, transform' }}
-      className={`transform-gpu ${className}`}
+      className={className}
     >
       {children}
     </motion.div>
   );
 };
+
 

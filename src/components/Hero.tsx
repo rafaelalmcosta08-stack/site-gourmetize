@@ -10,7 +10,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = () => {
   return (
-    <section className="relative bg-[#FFAA48] orange-gradient-bg pt-8 pb-10 sm:pt-12 sm:pb-12 md:pt-14 md:pb-14 lg:pt-16 lg:pb-16 text-black overflow-hidden select-none">
+    <section className="relative bg-[#FFAA48] orange-gradient-bg min-h-[78vh] sm:min-h-[82vh] md:min-h-[85vh] lg:min-h-[87vh] flex flex-col justify-center items-center py-8 sm:py-12 md:py-16 text-black overflow-hidden select-none">
       {/* Background Geometric Arrow Patterns */}
       <div className="absolute inset-0 pointer-events-none opacity-15 flex items-center justify-center overflow-hidden">
         <svg
