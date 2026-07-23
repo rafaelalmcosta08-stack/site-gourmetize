@@ -47,7 +47,7 @@ export const WhoWeAre: React.FC = () => {
     {
       icon: <ShieldCheck className="w-5 h-5 text-[#FFAA48]" />,
       title: "Comprovado no Mercado",
-      description: "Mais de R$ 500 Milhões em vendas geradas para mais de 2.000 restaurantes em todo o Brasil."
+      description: "Mais de R$ 500 Milhões em vendas geradas para mais de +250 restaurantes em todo o Brasil."
     }
   ];
 
@@ -188,7 +188,7 @@ export const WhoWeAre: React.FC = () => {
                 <p className="text-[10px] sm:text-xs text-zinc-400 font-bold uppercase">Presencial</p>
               </div>
               <div className="text-center pl-2">
-                <p className="text-xl sm:text-2xl font-black text-[#FFAA48]">+2.000</p>
+                <p className="text-xl sm:text-2xl font-black text-[#FFAA48]">+250</p>
                 <p className="text-[10px] sm:text-xs text-zinc-400 font-bold uppercase">Restaurantes</p>
               </div>
             </div>

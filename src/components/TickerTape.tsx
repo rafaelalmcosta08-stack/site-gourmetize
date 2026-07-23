@@ -16,7 +16,7 @@ export const TickerTape: React.FC = () => {
   const highlightItems = [
     { icon: <Zap className="w-4 h-4 text-amber-400 fill-amber-400" />, text: "+R$ 500 MILHÕES EM VENDAS GERADAS" },
     { icon: <Rocket className="w-4 h-4 text-orange-400" />, text: "SITE E CARDÁPIO EM 7 DIAS" },
-    { icon: <Award className="w-4 h-4 text-amber-300" />, text: "+2.000 RESTAURANTES DE SUCESSO" },
+    { icon: <Award className="w-4 h-4 text-amber-300" />, text: "+250 RESTAURANTES DE SUCESSO" },
     { icon: <TrendingUp className="w-4 h-4 text-emerald-400" />, text: "ROI MÉDIO DE 15X EM TRÁFEGO" },
     { icon: <MessageSquare className="w-4 h-4 text-emerald-400" />, text: "AUTOMAÇÃO INTELIGENTE DE WHATSAPP" },
     { icon: <Star className="w-4 h-4 text-amber-400 fill-amber-400" />, text: "MÉTODO NÚMERO 1 DA AMÉRICA LATINA" },

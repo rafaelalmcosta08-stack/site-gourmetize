@@ -15,7 +15,8 @@ import {
   Eye,
   Award,
   CircleDollarSign,
-  Users
+  Users,
+  LayoutDashboard
 } from 'lucide-react';
 
 export const WhatWeDo: React.FC = () => {
@@ -98,29 +99,28 @@ export const WhatWeDo: React.FC = () => {
       )
     },
     {
-      id: 'trafego',
-      badge: 'TRÁFEGO PAGO DE ALTA DENSIDADE',
-      tag: 'Meta Ads, iFood & Google',
-      title: 'Anúncios que Loteiam o Salão e o Delivery',
-      shortDesc: 'Atração contínua de pessoas famintas a até 10km da sua loja.',
-      icon: Target,
+      id: 'gestao',
+      badge: 'SISTEMA DE GESTÃO COMPLETO',
+      tag: 'FINANCEIRO, ENTREGAS & CLIENTES',
+      title: 'TUDO QUE ACONTECE NO SEU RESTAURANTE, EM UM SÓ LUGAR',
+      shortDesc: 'Financeiro, entregas e clientes controlados em um painel só, sem planilha.',
+      icon: LayoutDashboard,
       color: '#FFAA48',
       metrics: [
-        { label: 'ROAS Médio', value: '15.2x' },
-        { label: 'Alcance Local', value: '+85.000 pessoas' }
+        { label: 'RESTAURANTES ATIVOS NO SISTEMA', value: '58' }
       ],
       bullets: [
         {
-          title: 'Raio Estratégico de Fome',
-          desc: 'Seus vídeos suculentos são exibidos no Instagram e Facebook exatamente para quem está no raio de entrega do seu restaurante na hora do almoço e do jantar.'
+          title: 'Controle Financeiro Automatizado',
+          desc: 'Fluxo de caixa, faturamento e receita recorrente atualizados em tempo real, sem depender de planilha ou caderno.'
         },
         {
-          title: 'iFood Ads & Google Pesquisa',
-          desc: 'Apareça nos primeiros lugares das buscas do iFood e do Google quando o cliente pesquisar por onde comer na sua cidade.'
+          title: 'Gestão de Entregas Centralizada',
+          desc: 'Acompanhamento de pedidos e status de entrega em um painel só, do pedido até a entrega no cliente.'
         },
         {
-          title: 'Otimização Diária de Orçamento',
-          desc: 'Monitoramento constante para garantir o menor custo por pedido e o maior retorno financeiro possível.'
+          title: 'CRM de Clientes',
+          desc: 'Funil comercial e histórico completo de cada cliente, pra nunca mais perder um lead ou esquecer um follow-up.'
         }
       ],
       mockup: (
@@ -128,10 +128,10 @@ export const WhatWeDo: React.FC = () => {
           <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
             <div className="flex items-center gap-2">
               <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FFAA48] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FFAA48]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
               </span>
-              <span className="text-xs font-black uppercase text-white tracking-wider">Painel de Campanhas Ativas</span>
+              <span className="text-xs font-black uppercase text-white tracking-wider">PAINEL DE GESTÃO</span>
             </div>
             <span className="bg-emerald-500/20 text-emerald-400 font-extrabold text-[10px] px-2.5 py-1 rounded-full border border-emerald-500/30">
               AO VIVO
@@ -141,38 +141,28 @@ export const WhatWeDo: React.FC = () => {
           <div className="space-y-2">
             <div className="bg-zinc-900 border border-zinc-800 p-3 rounded-2xl flex items-center justify-between">
               <div>
-                <p className="text-xs font-bold text-white">Meta Ads (Instagram / FB)</p>
-                <p className="text-[10px] text-zinc-400">Raio de 5km • Foco em Vídeo Almoço</p>
+                <p className="text-xs font-bold text-white">Pedidos em Andamento</p>
+                <p className="text-[10px] text-zinc-400">Status do pedido à entrega</p>
               </div>
-              <span className="bg-[#FFAA48] text-black font-black text-xs px-2.5 py-1 rounded-lg">
-                ROAS 18.2x
+              <span className="bg-zinc-800 text-emerald-400 font-black text-xs px-2.5 py-1 rounded-lg border border-zinc-700">
+                157
               </span>
             </div>
 
             <div className="bg-zinc-900 border border-zinc-800 p-3 rounded-2xl flex items-center justify-between">
               <div>
-                <p className="text-xs font-bold text-white">iFood Ads Impulsionado</p>
-                <p className="text-[10px] text-zinc-400">Topo de Categoria Delivery</p>
+                <p className="text-xs font-bold text-white">Clientes Ativos</p>
+                <p className="text-[10px] text-zinc-400">CRM & histórico comercial</p>
               </div>
-              <span className="bg-emerald-500 text-black font-black text-xs px-2.5 py-1 rounded-lg">
-                +1.120 Pedidos
-              </span>
-            </div>
-
-            <div className="bg-zinc-900 border border-zinc-800 p-3 rounded-2xl flex items-center justify-between">
-              <div>
-                <p className="text-xs font-bold text-white">Google Ads (Restaurante Perto)</p>
-                <p className="text-[10px] text-zinc-400">Intenção de Compra Direta</p>
-              </div>
-              <span className="bg-zinc-800 text-zinc-200 font-bold text-xs px-2.5 py-1 rounded-lg border border-zinc-700">
-                CTR 9.4%
+              <span className="bg-zinc-800 text-amber-400 font-black text-xs px-2.5 py-1 rounded-lg border border-zinc-700">
+                338
               </span>
             </div>
           </div>
 
           <div className="p-3 bg-[#FFAA48]/10 border border-[#FFAA48]/30 rounded-2xl flex items-center justify-between text-xs text-[#FFAA48] font-bold">
-            <span>Faturamento Gerado no Mês</span>
-            <span className="text-white text-sm font-black">R$ 128.450,00</span>
+            <span>Retenção de Carteira</span>
+            <span className="text-white text-sm font-black">--</span>
           </div>
         </div>
       )
@@ -432,7 +422,7 @@ export const WhatWeDo: React.FC = () => {
               </div>
 
               {/* Stat Highlights */}
-              <div className="grid grid-cols-2 gap-4 pt-2">
+              <div className={`grid ${currentService.metrics.length === 1 ? 'grid-cols-1 max-w-sm' : 'grid-cols-2'} gap-4 pt-2`}>
                 {currentService.metrics.map((m, i) => (
                   <div key={i} className="bg-zinc-950 border border-zinc-800 p-3.5 rounded-2xl">
                     <p className="text-[11px] text-zinc-400 font-bold uppercase">{m.label}</p>

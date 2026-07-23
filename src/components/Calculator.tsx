@@ -142,7 +142,7 @@ export const Calculator: React.FC = () => {
                 </CoolButton>
 
                 <p className="text-[11px] text-zinc-500 text-center">
-                  *Projeção baseada na média histórica do método Gourmetize em mais de 2.000 operações ativas.
+                  *Projeção baseada na média histórica do método Gourmetize em mais de +250 restaurantes atendidos.
                 </p>
               </div>
 

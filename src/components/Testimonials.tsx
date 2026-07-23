@@ -81,7 +81,7 @@ export const Testimonials: React.FC = () => {
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-tight text-white">
-            MAIS DE <span className="text-[#FFAA48]">2.000 RESTAURANTES</span> COM RESULTADOS. ISSO É{' '}
+            MAIS DE <span className="text-[#FFAA48]">+250 RESTAURANTES</span> COM RESULTADOS. ISSO É{' '}
             <span className="text-[#FFAA48]">GOURMETIZE</span>.
           </h2>
           <p className="mt-3 text-zinc-400 text-base sm:text-lg">
